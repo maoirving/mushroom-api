@@ -15,15 +15,15 @@ router.get('/', async function (req, res, next) {
       [Op.like]: '%' + name + '%'
     }
   }
-  var result = await models.Job.findAndCountAll({
+  var result = await models.Company.findAndCountAll({
     order: [['id', 'DESC']],
     where: where,
-    include: [models.Company],
+    include: [models.Job],
     offset: (currentPage - 1) * pageSize,
     limit: pageSize
   })
   res.json({
-    jobs: result.rows,
+    companies: result.rows,
     pagination: {
       currentPage: currentPage,
       pageSize: pageSize,
@@ -34,30 +34,30 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  var job = await models.Job.create(req.body)
-  res.json({ jobs: job })
+  var company = await models.Company.create(req.body)
+  res.json({ companies: company })
 })
 
 // 查询
 router.get('/:id', async function (req, res, next) {
-  var job = await models.Job.findOne({
+  var company = await models.Company.findOne({
     where: { id: req.params.id },
-    include: [models.Company]
+    include: [models.Job]
   })
-  res.json({ job: job })
+  res.json({ company: company })
 })
 
 // 修改
 router.put('/:id', async function (req, res, next) {
-  var job = await models.Job.findByPk(req.params.id)
-  job.update(req.body)
-  res.json({ job: job })
+  var company = await models.Company.findByPk(req.params.id)
+  company.update(req.body)
+  res.json({ company: company })
 })
 
 // 删除
 router.delete('/:id', async function (req, res, next) {
-  var job = await models.Job.findByPk(req.params.id)
-  job.destroy(req.body)
+  var company = await models.Company.findByPk(req.params.id)
+  company.destroy(req.body)
   res.json({ msg: '删除成功！' })
 })
 
