@@ -9,7 +9,12 @@ router.get('/', async function (req, res, next) {
   var pageSize = parseInt(req.query.limit) || 10
   var result = await models.Application.findAndCountAll({
     order: [['createdAt', 'DESC']],
-    include: [models.Job],
+    include: [
+      {
+        model: models.Job,
+        include: [models.Company]
+      }
+    ],
     offset: (currentPage - 1) * pageSize,
     limit: pageSize
   })

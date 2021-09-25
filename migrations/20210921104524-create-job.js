@@ -14,7 +14,7 @@ module.exports = {
       },
       type: {
         type: Sequelize.STRING(20),
-        comment: '招聘类别'
+        comment: '招聘类别 society:社会招聘，school:校园招聘'
       },
       recruitingNnumbers: {
         type: Sequelize.INTEGER,

@@ -8,14 +8,14 @@ module.exports = {
         {
           username: 'admin',
           realName: '林某人',
-          type: 'worker',
+          type: 'admin',
           imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
           sex: '女',
           birthday: '2000-08-14',
           phoneNumber: '18239389584',
           email: 'wew@qq.com',
-          password: '111111',
-          encrypt: 'dfdfdd',
+          password: '929b71104a53a192bd1d5da17f39eb64',
+          solt: 'UkR4Zs',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -28,8 +28,8 @@ module.exports = {
           birthday: '2000-08-14',
           phoneNumber: '18239389584',
           email: 'wew@qq.com',
-          password: 'sdsdsdsds',
-          encrypt: 'dfdfdd',
+          password: '929b71104a53a192bd1d5da17f39eb64',
+          solt: 'UkR4Zs',
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -42,8 +42,8 @@ module.exports = {
           birthday: '1999-01-16',
           phoneNumber: '18239389584',
           email: 'wdew@qq.com',
-          password: 'sdsdsdsds',
-          encrypt: 'dfdfdd',
+          password: '929b71104a53a192bd1d5da17f39eb64',
+          solt: 'UkR4Zs',
           createdAt: new Date(),
           updatedAt: new Date()
         }

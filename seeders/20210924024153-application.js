@@ -7,15 +7,49 @@ module.exports = {
       [
         {
           userId: 1,
+          jobId: 1,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
           jobId: 2,
-          readAt: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
+          jobId: 3,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
+          jobId: 6,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
+          jobId: 4,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 1,
+          jobId: 5,
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
           userId: 2,
           jobId: 3,
-          readAt: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          userId: 2,
+          jobId: 4,
           createdAt: new Date(),
           updatedAt: new Date()
         }

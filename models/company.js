@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
       financingStage: DataTypes.STRING,
       introduction: DataTypes.TEXT,
       scale: DataTypes.STRING,
-      financingStage: DataTypes.STRING,
       legalRepresentative: DataTypes.STRING,
       registeredCapital: DataTypes.STRING,
       registeredAt: DataTypes.DATE

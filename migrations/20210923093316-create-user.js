@@ -44,7 +44,7 @@ module.exports = {
         type: Sequelize.STRING(50),
         comment: '密码'
       },
-      encrypt: {
+      solt: {
         type: Sequelize.STRING(20),
         comment: '随机盐值'
       },

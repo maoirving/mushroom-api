@@ -42,7 +42,12 @@ router.post('/', async function (req, res, next) {
 router.get('/:id', async function (req, res, next) {
   var job = await models.Job.findOne({
     where: { id: req.params.id },
-    include: [models.Company]
+    include: [
+      {
+        model: models.Company,
+        include: [models.Job]
+      }
+    ]
   })
   res.json({ job: job })
 })
