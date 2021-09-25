@@ -9,11 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         comment: '职位名称'
       },
       type: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '招聘类别'
       },
       recruitingNnumbers: {
@@ -21,7 +21,7 @@ module.exports = {
         comment: '招聘人数'
       },
       salary: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '工资范围'
       },
       workLocation: {
@@ -29,11 +29,11 @@ module.exports = {
         comment: '工作地点'
       },
       workExperience: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '工作经验'
       },
       educationBackground: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '学历'
       },
       description: {

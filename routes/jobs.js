@@ -6,7 +6,7 @@ var Op = models.Sequelize.Op
 // 职位列表
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
-  var pageSize = parseInt(req.query.pageSize) || 10
+  var pageSize = parseInt(req.query.limit) || 10
   var where = {}
   // 模糊查询
   var name = req.query.name

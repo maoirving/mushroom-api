@@ -3,27 +3,18 @@ var router = express.Router()
 var models = require('../models')
 var Op = models.Sequelize.Op
 
-// 职位列表
+// 申请列表
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
-  var where = {}
-  // 模糊查询
-  var name = req.query.name
-  if (name) {
-    where.name = {
-      [Op.like]: '%' + name + '%'
-    }
-  }
-  var result = await models.Company.findAndCountAll({
-    order: [['id', 'DESC']],
-    where: where,
+  var result = await models.Application.findAndCountAll({
+    order: [['createdAt', 'DESC']],
     include: [models.Job],
     offset: (currentPage - 1) * pageSize,
     limit: pageSize
   })
   res.json({
-    companies: result.rows,
+    applications: result.rows,
     pagination: {
       currentPage: currentPage,
       pageSize: pageSize,
@@ -34,30 +25,30 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  var company = await models.Company.create(req.body)
-  res.json({ companies: company })
+  var application = await models.Application.create(req.body)
+  res.json({ applications: application })
 })
 
 // 查询
 router.get('/:id', async function (req, res, next) {
-  var company = await models.Company.findOne({
+  var application = await models.Application.findOne({
     where: { id: req.params.id },
-    include: [models.Job]
+    include: [models.Company]
   })
-  res.json({ company: company })
+  res.json({ application: application })
 })
 
 // 修改
 router.put('/:id', async function (req, res, next) {
-  var company = await models.Company.findByPk(req.params.id)
-  company.update(req.body)
-  res.json({ company: company })
+  var application = await models.Application.findByPk(req.params.id)
+  application.update(req.body)
+  res.json({ application: application })
 })
 
 // 删除
 router.delete('/:id', async function (req, res, next) {
-  var company = await models.Company.findByPk(req.params.id)
-  company.destroy(req.body)
+  var application = await models.Application.findByPk(req.params.id)
+  application.destroy(req.body)
   res.json({ msg: '删除成功！' })
 })
 

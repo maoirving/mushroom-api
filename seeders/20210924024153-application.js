@@ -3,23 +3,19 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(
-      'Comments',
+      'Applications',
       [
         {
-          articleId: 1,
-          content: '这是文章1的评论',
+          userId: 1,
+          jobId: 2,
+          readAt: new Date(),
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          articleId: 2,
-          content: '这是文章2的评论',
-          createdAt: new Date(),
-          updatedAt: new Date()
-        },
-        {
-          articleId: 3,
-          content: '这是文章3的评论',
+          userId: 2,
+          jobId: 3,
+          readAt: new Date(),
           createdAt: new Date(),
           updatedAt: new Date()
         }
@@ -29,6 +25,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Comments', null, {})
+    await queryInterface.bulkDelete('Applications', null, {})
   }
 }

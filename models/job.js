@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.Job.belongsTo(models.Company)
+      models.Job.hasMany(models.Application)
     }
   }
   Job.init(

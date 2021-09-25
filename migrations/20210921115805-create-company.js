@@ -9,15 +9,15 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(100),
         comment: '公司名称'
       },
       type: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '行业类别'
       },
       imageUrl: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(1000),
         comment: '图片地址'
       },
       address: {
@@ -25,7 +25,7 @@ module.exports = {
         comment: '公司地址'
       },
       financingStage: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '融资阶段'
       },
       introduction: {
@@ -33,15 +33,15 @@ module.exports = {
         comment: '公司简介'
       },
       scale: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '公司规模'
       },
       legalRepresentative: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '法定代表人'
       },
       registeredCapital: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(20),
         comment: '注册资金'
       },
       registeredAt: {

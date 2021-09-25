@@ -6,7 +6,7 @@ var Op = models.Sequelize.Op
 // 文章列表
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
-  var pageSize = parseInt(req.query.pageSize) || 2
+  var pageSize = parseInt(req.query.limit) || 2
   var where = {}
   // 模糊查询
   var title = req.query.title
