@@ -7,8 +7,20 @@ var Op = models.Sequelize.Op
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
+  var where = {}
+  var isRead = req.query.isRead
+  var status = req.query.status
+  if (isRead) {
+    where.readAt = {
+      [Op.not]: null
+    }
+  }
+  if (status) {
+    where.status = status
+  }
   var result = await models.Application.findAndCountAll({
     order: [['createdAt', 'DESC']],
+    where: where,
     include: [
       {
         model: models.Job,
@@ -54,7 +66,7 @@ router.put('/:id', async function (req, res, next) {
 router.delete('/:id', async function (req, res, next) {
   var application = await models.Application.findByPk(req.params.id)
   application.destroy(req.body)
-  res.json({ msg: '删除成功！' })
+  res.json({ msg: '删除成功！', success: true })
 })
 
 module.exports = router

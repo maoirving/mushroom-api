@@ -10,10 +10,22 @@ router.get('/', async function (req, res, next) {
   var where = {}
   // 模糊查询
   var name = req.query.name
+  var type = req.query.type
+  var educationBackground = req.query.educationBackground
+  var workExperience = req.query.workExperience
   if (name) {
     where.name = {
       [Op.like]: '%' + name + '%'
     }
+  }
+  if (type) {
+    where.type = type
+  }
+  if (educationBackground) {
+    where.educationBackground = educationBackground
+  }
+  if (workExperience) {
+    where.workExperience = workExperience
   }
   var result = await models.Job.findAndCountAll({
     order: [['id', 'DESC']],

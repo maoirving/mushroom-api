@@ -3,6 +3,8 @@ var router = express.Router()
 var models = require('../models')
 var Op = models.Sequelize.Op
 var tool = require('../public/javascripts/tools.js')
+var jwt = require('jsonwebtoken')
+var jwt_config = require(__dirname + '/../config/config.json').jwt_config
 
 // 职位列表
 router.get('/', async function (req, res, next) {
@@ -52,7 +54,7 @@ router.get('/:id', async function (req, res, next) {
   res.json({ user: user })
 })
 
-// 根据账号密码
+// 根据账号密码（登录）
 router.post('/check', async function (req, res, next) {
   const username = req.body.username
   const password = req.body.password
@@ -68,6 +70,13 @@ router.post('/check', async function (req, res, next) {
     const user = await models.User.findOne({
       where: { username: req.body.username, password: md5Pass }
     })
+    // 生成token
+    if (user) {
+      var token = jwt.sign({ uid: user.id, rid: user.type }, jwt_config.secretKey, {
+        expiresIn: jwt_config.expiresIn
+      })
+      user.dataValues.token = 'Bearer ' + token
+    }
     res.json({ user: user, success: user !== null })
   }
 })
