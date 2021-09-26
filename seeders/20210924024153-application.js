@@ -8,6 +8,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 1,
+          resumeId: 1,
           readAt: new Date(),
           status: 0,
           createdAt: new Date(),
@@ -16,6 +17,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 2,
+          resumeId: 1,
           readAt: new Date(),
           status: 0,
           createdAt: new Date(),
@@ -24,6 +26,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 3,
+          resumeId: 1,
           readAt: new Date(),
           status: 0,
           createdAt: new Date(),
@@ -32,6 +35,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 6,
+          resumeId: 1,
           readAt: new Date(),
           status: 0,
           createdAt: new Date(),
@@ -40,6 +44,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 4,
+          resumeId: 1,
           status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -47,6 +52,7 @@ module.exports = {
         {
           userId: 1,
           jobId: 5,
+          resumeId: 1,
           status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -54,6 +60,7 @@ module.exports = {
         {
           userId: 2,
           jobId: 3,
+          resumeId: 1,
           status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
@@ -61,6 +68,7 @@ module.exports = {
         {
           userId: 2,
           jobId: 4,
+          resumeId: 1,
           status: 1,
           createdAt: new Date(),
           updatedAt: new Date()

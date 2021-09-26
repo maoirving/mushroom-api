@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Applications', {
+    await queryInterface.createTable('Resumes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -12,21 +12,17 @@ module.exports = {
         type: Sequelize.INTEGER,
         comment: '用户id'
       },
-      jobId: {
-        type: Sequelize.INTEGER,
-        comment: '职位id'
+      anticipantJob: {
+        type: Sequelize.STRING(100),
+        comment: '期望职位'
       },
-      resumeId: {
-        type: Sequelize.INTEGER,
-        comment: '简历id'
+      anticipantCity: {
+        type: Sequelize.STRING(20),
+        comment: '期望城市'
       },
-      readAt: {
-        type: Sequelize.DATE,
-        comment: '查看时间'
-      },
-      status: {
-        type: Sequelize.BOOLEAN,
-        comment: '申请状态（null未处理，0未通过，1通过）'
+      anticipantSalary: {
+        type: Sequelize.STRING(20),
+        comment: '期望工资'
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +37,6 @@ module.exports = {
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Applications')
+    await queryInterface.dropTable('Resumes')
   }
 }
