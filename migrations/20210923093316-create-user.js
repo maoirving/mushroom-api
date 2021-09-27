@@ -25,7 +25,7 @@ module.exports = {
         comment: '用户头像'
       },
       sex: {
-        type: Sequelize.STRING(2),
+        type: Sequelize.STRING(10),
         comment: '性别'
       },
       birthday: {
