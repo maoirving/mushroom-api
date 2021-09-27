@@ -35,7 +35,7 @@ module.exports = {
           <br/>
           我们的愿景<br/>
           我们旨在构建未来的商务生态系统。我们的愿景是让客户相会、工作和生活在阿里巴巴，并持续发展最少102年。</p>`,
-          scale: '10000以上',
+          scale: '10000人以上',
           legalRepresentative: '张勇',
           registeredCapital: '1220000万人民币',
           registeredAt: '2018-03-19',
@@ -51,7 +51,7 @@ module.exports = {
           financingStage: '已上市',
           introduction: `<p>“百度”二字，来自于八百年前南宋词人辛弃疾的一句词：众里寻他千百度。这句话描述了词人对理想的执着追求。<br/>
           百度拥有数万名研发工程师，这是中国乃至全球最为优秀的技术团队。这支队伍掌握着世界上最为先进的搜索引擎技术，使百度成为中国掌握世界尖端科学核心技术的中国高科技企业，也使中国成为美国、俄罗斯、和韩国之外，全球仅有的4个拥有搜索引擎核心技术的国家之一。</p>`,
-          scale: '10000以上',
+          scale: '10000人以上',
           legalRepresentative: '崔珊珊',
           registeredCapital: '2000万美元',
           registeredAt: '2010-11-23',
@@ -70,7 +70,7 @@ module.exports = {
           Introduction to Meituan<br/>
           The mission of Meituan is “We help people eat better, live better ”. As China’s e-commerce platform for services, Meituan places its focus on the “Food+ Platform” strategy and always takes “eating” as the core of its businesses. Resorting to its advantages in scientific innovation, Meituan joins hands with a vast number of merchants and diverse partners to offer consumers quality services and accelerate the digital upgrade of the life service industry on both demand and supply sides.<br/>
           Officially listed on the Main Board of the Stock Exchange of Hong Kong Limited on September 20, 2018, Meituan has always centered on customers and kept increasing investment in scientific R&D, thus better fulfilling its social responsibilities, creating more values for the society, and seeking win-win cooperation with all partners.</p>`,
-          scale: '10000以上',
+          scale: '10000人以上',
           legalRepresentative: '穆荣均',
           registeredCapital: '333166万美元',
           registeredAt: '2011-05-06',

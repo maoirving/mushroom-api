@@ -13,6 +13,7 @@ router.get('/', async function (req, res, next) {
   var type = req.query.type
   var educationBackground = req.query.educationBackground
   var workExperience = req.query.workExperience
+
   if (name) {
     where.name = {
       [Op.like]: '%' + name + '%'
@@ -27,10 +28,25 @@ router.get('/', async function (req, res, next) {
   if (workExperience) {
     where.workExperience = workExperience
   }
+
+  var companyWhere = {}
+  var financingStage = req.query.financingStage
+  var scale = req.query.scale
+  if (financingStage) {
+    companyWhere.financingStage = financingStage
+  }
+  if (scale) {
+    companyWhere.scale = scale
+  }
   var result = await models.Job.findAndCountAll({
     order: [['id', 'DESC']],
     where: where,
-    include: [models.Company],
+    include: [
+      {
+        model: models.Company,
+        where: companyWhere
+      }
+    ],
     offset: (currentPage - 1) * pageSize,
     limit: pageSize
   })

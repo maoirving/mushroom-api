@@ -10,17 +10,30 @@ router.get('/', async function (req, res, next) {
   var where = {}
   // 模糊查询
   var name = req.query.name
+  var type = req.query.type
+  var financingStage = req.query.financingStage
+  var scale = req.query.scale
   if (name) {
     where.name = {
       [Op.like]: '%' + name + '%'
     }
+  }
+  if (type) {
+    where.type = type
+  }
+  if (financingStage) {
+    where.financingStage = financingStage
+  }
+  if (scale) {
+    where.scale = scale
   }
   var result = await models.Company.findAndCountAll({
     order: [['id', 'DESC']],
     where: where,
     include: [models.Job],
     offset: (currentPage - 1) * pageSize,
-    limit: pageSize
+    limit: pageSize,
+    distinct: true
   })
   res.json({
     companies: result.rows,
