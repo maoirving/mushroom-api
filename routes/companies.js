@@ -3,7 +3,7 @@ var router = express.Router()
 var models = require('../models')
 var Op = models.Sequelize.Op
 
-// 职位列表
+// 公司列表
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
@@ -71,7 +71,7 @@ router.put('/:id', async function (req, res, next) {
 router.delete('/:id', async function (req, res, next) {
   var company = await models.Company.findByPk(req.params.id)
   company.destroy(req.body)
-  res.json({ msg: '删除成功！' })
+  res.json({ success: true })
 })
 
 module.exports = router

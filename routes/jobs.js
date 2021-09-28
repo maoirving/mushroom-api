@@ -91,7 +91,7 @@ router.put('/:id', async function (req, res, next) {
 router.delete('/:id', async function (req, res, next) {
   var job = await models.Job.findByPk(req.params.id)
   job.destroy(req.body)
-  res.json({ msg: '删除成功！' })
+  res.json({ success: true })
 })
 
 module.exports = router

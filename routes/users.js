@@ -6,17 +6,25 @@ var tool = require('../public/javascripts/tools.js')
 var jwt = require('jsonwebtoken')
 var jwt_config = require(__dirname + '/../config/config.json').jwt_config
 
-// 职位列表
+// 用户列表
 router.get('/', async function (req, res, next) {
   const currentPage = parseInt(req.query.currentPage) || 1
   const pageSize = parseInt(req.query.limit) || 10
   const where = {}
   // 模糊查询
-  const name = req.query.name
-  if (name) {
-    where.name = {
-      [Op.like]: '%' + name + '%'
+  const realName = req.query.realName
+  var type = req.query.type
+  var sex = req.query.sex
+  if (realName) {
+    where.realName = {
+      [Op.like]: '%' + realName + '%'
     }
+  }
+  if (type) {
+    where.type = type
+  }
+  if (sex) {
+    where.sex = sex
   }
   const result = await models.User.findAndCountAll({
     order: [['id', 'DESC']],
@@ -92,7 +100,7 @@ router.put('/:id', async function (req, res, next) {
 router.delete('/:id', async function (req, res, next) {
   const user = await models.User.findByPk(req.params.id)
   user.destroy(req.body)
-  res.json({ msg: '删除成功！' })
+  res.json({ success: true })
 })
 
 module.exports = router
