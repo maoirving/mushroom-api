@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       jobId: DataTypes.INTEGER,
       resumeId: DataTypes.INTEGER,
       readAt: DataTypes.DATE,
-      status: DataTypes.BOOLEAN
+      handledStatus: DataTypes.INTEGER
     },
     {
       sequelize,

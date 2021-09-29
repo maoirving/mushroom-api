@@ -9,7 +9,7 @@ router.get('/', async function (req, res, next) {
   var pageSize = parseInt(req.query.limit) || 10
   var where = {}
   var isRead = req.query.isRead
-  var status = req.query.status
+  var handledStatus = req.query.handledStatus
   const userId = req.query.userId
   const jobId = req.query.jobId
   if (userId) {
@@ -23,8 +23,34 @@ router.get('/', async function (req, res, next) {
       [Op.not]: null
     }
   }
-  if (status) {
-    where.status = status
+  if (handledStatus) {
+    where.handledStatus = handledStatus
+  }
+  const jobName = req.query.jobName
+  const jobType = req.query.jobType
+  let jobWhere = {}
+  if (jobName) {
+    jobWhere.name = {
+      [Op.like]: '%' + jobName + '%'
+    }
+  }
+  if (jobType) {
+    jobWhere.type = jobType
+  }
+  let userWhere = {}
+  const educationBackground = req.query.educationBackground
+  const workExperience = req.query.workExperience
+  const userRealName = req.query.userRealName
+  if (educationBackground) {
+    userWhere.educationBackground = educationBackground
+  }
+  if (workExperience) {
+    userWhere.workExperience = workExperience
+  }
+  if (userRealName) {
+    userWhere.realName = {
+      [Op.like]: '%' + userRealName + '%'
+    }
   }
   var result = await models.Application.findAndCountAll({
     order: [['createdAt', 'DESC']],
@@ -32,10 +58,12 @@ router.get('/', async function (req, res, next) {
     include: [
       {
         model: models.Job,
+        where: jobWhere,
         include: [models.Company]
       },
       {
-        model: models.User
+        model: models.User,
+        where: userWhere
       }
     ],
     offset: (currentPage - 1) * pageSize,

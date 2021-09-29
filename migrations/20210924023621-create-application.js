@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.DATE,
         comment: '查看时间'
       },
-      status: {
+      handledStatus: {
         type: Sequelize.BOOLEAN,
         comment: '申请状态（null未处理，0未通过，1通过）'
       },
