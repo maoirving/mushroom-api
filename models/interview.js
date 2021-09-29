@@ -9,12 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.Interview.belongsTo(models.Message)
     }
   }
   Interview.init(
     {
       interviewAt: DataTypes.DATE,
-      address: DataTypes.STRING
+      address: DataTypes.STRING,
+      tip: DataTypes.TEXT,
+      messageId: DataTypes.INTEGER
     },
     {
       sequelize,

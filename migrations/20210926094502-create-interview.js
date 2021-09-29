@@ -16,6 +16,14 @@ module.exports = {
         type: Sequelize.STRING,
         comment: '面试地点'
       },
+      tip: {
+        type: Sequelize.TEXT,
+        comment: '备注'
+      },
+      messageId: {
+        type: Sequelize.INTEGER,
+        comment: '消息id'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

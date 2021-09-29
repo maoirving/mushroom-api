@@ -9,6 +9,8 @@ var usersRouter = require('./routes/users')
 var jobsRouter = require('./routes/jobs')
 var companiesRouter = require('./routes/companies')
 var applicationsRouter = require('./routes/applications')
+var messagesRouter = require('./routes/messages')
+var interviewsRouter = require('./routes/interviews')
 
 var app = express()
 
@@ -41,6 +43,8 @@ app.use('/users', usersRouter)
 app.use('/jobs', jobsRouter)
 app.use('/companies', companiesRouter)
 app.use('/applications', applicationsRouter)
+app.use('/messages', messagesRouter)
+app.use('/interviews', interviewsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

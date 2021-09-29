@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Application.belongsTo(models.User)
       models.Application.belongsTo(models.Job)
+      models.Application.hasMany(models.Message)
     }
   }
   Application.init(

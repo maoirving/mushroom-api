@@ -9,12 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.Message.belongsTo(models.Application)
+      models.Message.hasOne(models.Interview)
     }
   }
   Message.init(
     {
       content: DataTypes.TEXT,
-      interviewId: DataTypes.INTEGER,
+      applicationId: DataTypes.INTEGER,
       senderId: DataTypes.INTEGER,
       receiverId: DataTypes.INTEGER
     },

@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.TEXT,
         comment: '消息内容'
       },
-      interviewId: {
+      applicationId: {
         type: Sequelize.INTEGER,
-        comment: '面试id'
+        comment: '申请id'
       },
       senderId: {
         type: Sequelize.INTEGER,
