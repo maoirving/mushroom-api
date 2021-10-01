@@ -14,9 +14,6 @@ router.get('/', async function (req, res, next) {
     include: [
       {
         model: models.Application
-      },
-      {
-        model: models.Interview
       }
     ],
     offset: (currentPage - 1) * pageSize,

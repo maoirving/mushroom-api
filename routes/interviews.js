@@ -37,14 +37,13 @@ router.get('/', async function (req, res, next) {
         include: [
           {
             model: models.Job,
-            where: jobWhere,
+            // where: jobWhere,
             include: [
               {
                 model: models.Company,
                 where: companyWhere
               }
-            ],
-            distinct: true
+            ]
           },
           {
             model: models.User,
@@ -60,6 +59,7 @@ router.get('/', async function (req, res, next) {
     limit: pageSize,
     distinct: true
   })
+  console.log(result)
   res.json({
     interviews: result.rows,
     pagination: {
