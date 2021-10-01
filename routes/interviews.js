@@ -7,10 +7,55 @@ var Op = models.Sequelize.Op
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
-  var where = {}
+  var companyWhere = {}
+  var companyName = req.query.companyName
+  if (companyName) {
+    companyWhere.name = {
+      [Op.like]: '%' + companyName + '%'
+    }
+  }
+  var jobWhere = {}
+  const jobName = req.query.jobName
+  if (jobName) {
+    jobWhere.name = {
+      [Op.like]: '%' + jobName + '%'
+    }
+  }
+  var userWhere = {}
+  var intervieweeName = req.query.intervieweeName
+  if (intervieweeName) {
+    userWhere.realName = {
+      [Op.like]: '%' + intervieweeName + '%'
+    }
+  }
+
   var result = await models.Interview.findAndCountAll({
     order: [['createdAt', 'DESC']],
-    where: where,
+    include: [
+      {
+        model: models.Application,
+        include: [
+          {
+            model: models.Job,
+            where: jobWhere,
+            include: [
+              {
+                model: models.Company,
+                where: companyWhere
+              }
+            ],
+            distinct: true
+          },
+          {
+            model: models.User,
+            where: userWhere
+          },
+          {
+            model: models.Message
+          }
+        ]
+      }
+    ],
     offset: (currentPage - 1) * pageSize,
     limit: pageSize,
     distinct: true

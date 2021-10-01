@@ -64,6 +64,9 @@ router.get('/', async function (req, res, next) {
       {
         model: models.User,
         where: userWhere
+      },
+      {
+        model: models.Message
       }
     ],
     offset: (currentPage - 1) * pageSize,
@@ -108,5 +111,16 @@ router.delete('/:id', async function (req, res, next) {
   application.destroy(req.body)
   res.json({ msg: '删除成功！', success: true })
 })
+
+// 删除全部
+// router.get('/many', async function (req, res, next) {
+//   var application = await models.Application.findAll({
+//     id: {
+//       [Op.or]: [1, 2]
+//     }
+//   })
+//   // application.destroy(req.body)
+//   res.json({ msg: '删除成功！', test: application, success: true })
+// })
 
 module.exports = router

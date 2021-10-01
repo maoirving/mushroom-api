@@ -20,9 +20,9 @@ module.exports = {
         type: Sequelize.TEXT,
         comment: '备注'
       },
-      messageId: {
+      applicationId: {
         type: Sequelize.INTEGER,
-        comment: '消息id'
+        comment: '申请id'
       },
       createdAt: {
         allowNull: false,

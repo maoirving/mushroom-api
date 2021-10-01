@@ -9,7 +9,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Interview.belongsTo(models.Message)
+      models.Interview.belongsTo(models.Application, {
+        foreignKey: 'applicationId'
+      })
     }
   }
   Interview.init(
@@ -17,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       interviewAt: DataTypes.DATE,
       address: DataTypes.STRING,
       tip: DataTypes.TEXT,
-      messageId: DataTypes.INTEGER
+      applicationId: DataTypes.INTEGER
     },
     {
       sequelize,

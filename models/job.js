@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Job.belongsTo(models.Company)
-      models.Job.hasMany(models.Application)
+      models.Job.belongsTo(models.Company, { foreignKey: 'companyId' })
+      models.Job.hasMany(models.Application, { foreignKey: 'jobId' })
     }
   }
   Job.init(

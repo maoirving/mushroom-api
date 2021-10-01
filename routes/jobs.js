@@ -63,7 +63,7 @@ router.get('/', async function (req, res, next) {
 // 新增
 router.post('/', async function (req, res, next) {
   var job = await models.Job.create(req.body)
-  res.json({ jobs: job })
+  res.json({ jobs: job, success: job !== null })
 })
 
 // 查询
@@ -84,7 +84,7 @@ router.get('/:id', async function (req, res, next) {
 router.put('/:id', async function (req, res, next) {
   var job = await models.Job.findByPk(req.params.id)
   job.update(req.body)
-  res.json({ job: job })
+  res.json({ job: job, success: true })
 })
 
 // 删除

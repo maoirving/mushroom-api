@@ -9,9 +9,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.Application.belongsTo(models.User)
-      models.Application.belongsTo(models.Job)
-      models.Application.hasMany(models.Message)
+      models.Application.belongsTo(models.User, { foreignKey: 'userId' })
+      models.Application.belongsTo(models.Job, { foreignKey: 'jobId' })
+      models.Application.hasMany(models.Message, {
+        foreignKey: 'applicationId'
+      })
+      models.Application.hasOne(models.Interview, {
+        foreignKey: 'applicationId'
+      })
     }
   }
   Application.init(
