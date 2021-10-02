@@ -37,7 +37,8 @@ router.get('/', async function (req, res, next) {
         include: [
           {
             model: models.Job,
-            // where: jobWhere,
+            where: jobWhere,
+            required: false,
             include: [
               {
                 model: models.Company,

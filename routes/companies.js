@@ -48,7 +48,7 @@ router.get('/', async function (req, res, next) {
 // 新增
 router.post('/', async function (req, res, next) {
   var company = await models.Company.create(req.body)
-  res.json({ companies: company })
+  res.json({ companies: company, success: company !== null })
 })
 
 // 查询
@@ -64,7 +64,7 @@ router.get('/:id', async function (req, res, next) {
 router.put('/:id', async function (req, res, next) {
   var company = await models.Company.findByPk(req.params.id)
   company.update(req.body)
-  res.json({ company: company })
+  res.json({ company: company, success: true })
 })
 
 // 删除

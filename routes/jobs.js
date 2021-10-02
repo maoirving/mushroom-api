@@ -39,7 +39,7 @@ router.get('/', async function (req, res, next) {
     companyWhere.scale = scale
   }
   var result = await models.Job.findAndCountAll({
-    order: [['id', 'DESC']],
+    order: [['createdAt', 'DESC']],
     where: where,
     include: [
       {
@@ -57,6 +57,20 @@ router.get('/', async function (req, res, next) {
       pageSize: pageSize,
       total: result.count
     }
+  })
+})
+
+// 职位列表选项
+router.get('/options', async function (req, res, next) {
+  var options = await models.Job.findAll({
+    attributes: [
+      ['id', 'value'],
+      ['name', 'label']
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.json({
+    options: options
   })
 })
 

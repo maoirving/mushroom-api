@@ -42,6 +42,20 @@ router.get('/', async function (req, res, next) {
   })
 })
 
+// 用户列表选项
+router.get('/options', async function (req, res, next) {
+  var options = await models.User.findAll({
+    attributes: [
+      ['id', 'value'],
+      ['realName', 'label']
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.json({
+    options: options
+  })
+})
+
 // 新增（注册）
 router.post('/', async function (req, res, next) {
   const solt = await tool.getRandomSolt()

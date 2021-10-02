@@ -83,6 +83,20 @@ router.get('/', async function (req, res, next) {
   })
 })
 
+// 申请列表id选项
+router.get('/ids', async function (req, res, next) {
+  var options = await models.Application.findAll({
+    attributes: [
+      ['id', 'value'],
+      ['id', 'label']
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.json({
+    options: options
+  })
+})
+
 // 新增
 router.post('/', async function (req, res, next) {
   var application = await models.Application.create(req.body)
