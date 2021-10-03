@@ -29,6 +29,9 @@ router.get('/', async function (req, res, next) {
   const result = await models.User.findAndCountAll({
     order: [['id', 'DESC']],
     where: where,
+    attributes: {
+      exclude: ['solt', 'password']
+    },
     offset: (currentPage - 1) * pageSize,
     limit: pageSize
   })
@@ -71,7 +74,10 @@ router.post('/', async function (req, res, next) {
 // 根据id
 router.get('/:id', async function (req, res, next) {
   const user = await models.User.findOne({
-    where: { id: req.params.id }
+    where: { id: req.params.id },
+    attributes: {
+      exclude: ['solt', 'password']
+    }
   })
   res.json({ user: user })
 })
@@ -106,8 +112,15 @@ router.post('/check', async function (req, res, next) {
 // 修改
 router.put('/:id', async function (req, res, next) {
   const user = await models.User.findByPk(req.params.id)
+  const password = req.body.password
+  if (password) {
+    const solt = await tool.getRandomSolt()
+    const md5Pass = await tool.getMD5(password, solt)
+    req.body.solt = solt
+    req.body.password = md5Pass
+  }
   user.update(req.body)
-  res.json({ user: user })
+  res.json({ user: user, success: true })
 })
 
 // 删除

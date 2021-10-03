@@ -7,13 +7,38 @@ var Op = models.Sequelize.Op
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
-  var where = {}
+  var senderWhere = {}
+  var senderName = req.query.senderName
+  if (senderName) {
+    senderWhere.realName = {
+      [Op.like]: '%' + senderName + '%'
+    }
+  }
+  var receiverWhere = {}
+  var receiverName = req.query.receiverName
+  if (receiverName) {
+    receiverWhere.realName = {
+      [Op.like]: '%' + receiverName + '%'
+    }
+  }
   var result = await models.Message.findAndCountAll({
     order: [['createdAt', 'DESC']],
-    where: where,
     include: [
       {
-        model: models.Application
+        model: models.User,
+        as: 'Sender',
+        where: senderWhere,
+        attributes: {
+          exclude: ['solt', 'password']
+        }
+      },
+      {
+        model: models.User,
+        as: 'Receiver',
+        where: receiverWhere,
+        attributes: {
+          exclude: ['solt', 'password']
+        }
       }
     ],
     offset: (currentPage - 1) * pageSize,
@@ -21,6 +46,8 @@ router.get('/', async function (req, res, next) {
     distinct: true
   })
   res.json({
+    senderWhere: senderWhere,
+    receiverWhere: receiverWhere,
     messages: result.rows,
     pagination: {
       currentPage: currentPage,
@@ -49,7 +76,7 @@ router.get('/:id', async function (req, res, next) {
 router.put('/:id', async function (req, res, next) {
   var message = await models.Message.findByPk(req.params.id)
   message.update(req.body)
-  res.json({ message: message })
+  res.json({ message: message, success: true })
 })
 
 // 删除

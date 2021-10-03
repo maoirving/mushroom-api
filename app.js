@@ -11,6 +11,7 @@ var companiesRouter = require('./routes/companies')
 var applicationsRouter = require('./routes/applications')
 var messagesRouter = require('./routes/messages')
 var interviewsRouter = require('./routes/interviews')
+var uploadRouter = require('./routes/upload')
 
 var app = express()
 
@@ -45,6 +46,8 @@ app.use('/companies', companiesRouter)
 app.use('/applications', applicationsRouter)
 app.use('/messages', messagesRouter)
 app.use('/interviews', interviewsRouter)
+app.use('/upload', uploadRouter)
+app.use('/uploads', express.static('uploads'))
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

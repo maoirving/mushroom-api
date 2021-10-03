@@ -48,7 +48,10 @@ router.get('/', async function (req, res, next) {
           },
           {
             model: models.User,
-            where: userWhere
+            where: userWhere,
+            attributes: {
+              exclude: ['solt', 'password']
+            }
           },
           {
             model: models.Message
@@ -90,7 +93,7 @@ router.get('/:id', async function (req, res, next) {
 router.put('/:id', async function (req, res, next) {
   var interview = await models.Interview.findByPk(req.params.id)
   interview.update(req.body)
-  res.json({ interview: interview })
+  res.json({ interview: interview, success: true })
 })
 
 // 删除

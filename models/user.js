@@ -10,6 +10,16 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       models.User.hasMany(models.Application, { foreignKey: 'userId' })
+      models.User.hasMany(models.Message, {
+        foreignKey: 'senderId',
+        targetKey: 'id',
+        as: 'Sender'
+      })
+      models.User.hasMany(models.Message, {
+        foreignKey: 'receiverId',
+        targetKey: 'id',
+        as: 'Receiver'
+      })
     }
   }
   User.init(
