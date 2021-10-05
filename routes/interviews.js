@@ -63,7 +63,6 @@ router.get('/', async function (req, res, next) {
     limit: pageSize,
     distinct: true
   })
-  console.log(result)
   res.json({
     interviews: result.rows,
     pagination: {

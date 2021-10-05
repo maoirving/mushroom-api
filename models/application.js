@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.Application.belongsTo(models.User, { foreignKey: 'userId' })
       models.Application.belongsTo(models.Job, { foreignKey: 'jobId' })
+      models.Application.belongsTo(models.ResumeFile, {
+        foreignKey: 'resumeId'
+      })
       models.Application.hasMany(models.Message, {
         foreignKey: 'applicationId'
       })

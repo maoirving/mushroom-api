@@ -45,6 +45,20 @@ router.get('/', async function (req, res, next) {
   })
 })
 
+// 公司列表选项
+router.get('/options', async function (req, res, next) {
+  var options = await models.Company.findAll({
+    attributes: [
+      ['id', 'value'],
+      ['name', 'label']
+    ],
+    order: [['createdAt', 'DESC']]
+  })
+  res.json({
+    options: options
+  })
+})
+
 // 新增
 router.post('/', async function (req, res, next) {
   var company = await models.Company.create(req.body)

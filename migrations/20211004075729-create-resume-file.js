@@ -1,33 +1,24 @@
 'use strict'
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Applications', {
+    await queryInterface.createTable('Resume_Files', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING(100),
+        comment: '简历名称'
+      },
+      url: {
+        type: Sequelize.TEXT,
+        comment: '简历url'
+      },
       userId: {
         type: Sequelize.INTEGER,
         comment: '用户id'
-      },
-      jobId: {
-        type: Sequelize.INTEGER,
-        comment: '职位id'
-      },
-      resumeId: {
-        type: Sequelize.INTEGER,
-        comment: '简历id'
-      },
-      readAt: {
-        type: Sequelize.DATE,
-        comment: '查看时间'
-      },
-      handledStatus: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: 0,
-        comment: '申请状态（0未处理，-1未通过，1通过）'
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +33,6 @@ module.exports = {
     })
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Applications')
+    await queryInterface.dropTable('Resume_Files')
   }
 }

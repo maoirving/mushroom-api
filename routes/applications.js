@@ -38,19 +38,17 @@ router.get('/', async function (req, res, next) {
     jobWhere.type = jobType
   }
   let userWhere = {}
-  const educationBackground = req.query.educationBackground
-  const workExperience = req.query.workExperience
   const userRealName = req.query.userRealName
-  if (educationBackground) {
-    userWhere.educationBackground = educationBackground
-  }
-  if (workExperience) {
-    userWhere.workExperience = workExperience
-  }
   if (userRealName) {
     userWhere.realName = {
       [Op.like]: '%' + userRealName + '%'
     }
+  }
+
+  let resumeWhere = {}
+  const educationBackground = req.query.educationBackground
+  if (educationBackground) {
+    resumeWhere.educationBackground = educationBackground
   }
   var result = await models.Application.findAndCountAll({
     order: [['createdAt', 'DESC']],
@@ -66,7 +64,16 @@ router.get('/', async function (req, res, next) {
         where: userWhere,
         attributes: {
           exclude: ['solt', 'password']
-        }
+        },
+        include: [
+          {
+            model: models.Resume,
+            where: resumeWhere
+          }
+        ]
+      },
+      {
+        model: models.ResumeFile
       },
       {
         model: models.Message
