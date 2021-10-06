@@ -7,6 +7,11 @@ var Op = models.Sequelize.Op
 router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage) || 1
   var pageSize = parseInt(req.query.limit) || 10
+  var where = {}
+  var agreedStatus = req.query.agreedStatus
+  if (agreedStatus) {
+    where.agreedStatus = agreedStatus
+  }
   var companyWhere = {}
   var companyName = req.query.companyName
   if (companyName) {
@@ -23,14 +28,19 @@ router.get('/', async function (req, res, next) {
   }
   var userWhere = {}
   var intervieweeName = req.query.intervieweeName
+  const userId = req.query.userId
   if (intervieweeName) {
     userWhere.realName = {
       [Op.like]: '%' + intervieweeName + '%'
     }
   }
+  if (userId) {
+    userWhere.id = userId
+  }
 
   var result = await models.Interview.findAndCountAll({
     order: [['createdAt', 'DESC']],
+    where: where,
     include: [
       {
         model: models.Application,
@@ -57,6 +67,13 @@ router.get('/', async function (req, res, next) {
             model: models.Message
           }
         ]
+      },
+      {
+        model: models.User,
+        as: 'Recruiter',
+        attributes: {
+          exclude: ['solt', 'password']
+        }
       }
     ],
     offset: (currentPage - 1) * pageSize,

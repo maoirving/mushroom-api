@@ -12,10 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.Application, { foreignKey: 'userId' })
       models.User.hasMany(models.ResumeFile, { foreignKey: 'userId' })
       models.User.hasOne(models.Resume, { foreignKey: 'userId' })
-      models.User.hasMany(models.Message, {
-        foreignKey: 'senderId',
+      // models.User.hasMany(models.Interview, { foreignKey: 'recruiterId' })
+      models.User.hasMany(models.Interview, {
+        foreignKey: 'recruiterId',
         targetKey: 'id',
-        as: 'Sender'
+        as: 'Recruiter'
       })
       models.User.hasMany(models.Message, {
         foreignKey: 'receiverId',

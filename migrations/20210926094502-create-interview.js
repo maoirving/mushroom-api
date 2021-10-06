@@ -24,6 +24,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         comment: '申请id'
       },
+      recruiterId: {
+        type: Sequelize.INTEGER,
+        comment: '招聘者id'
+      },
+      agreedStatus: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: 0,
+        comment: '同意状态（0未处理，-1拒绝，1接受）'
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

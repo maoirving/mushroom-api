@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
       models.Interview.belongsTo(models.Application, {
         foreignKey: 'applicationId'
       })
+      models.Interview.belongsTo(models.User, {
+        foreignKey: 'recruiterId',
+        targetKey: 'id',
+        as: 'Recruiter'
+      })
     }
   }
   Interview.init(
@@ -19,7 +24,9 @@ module.exports = (sequelize, DataTypes) => {
       interviewAt: DataTypes.DATE,
       address: DataTypes.STRING,
       tip: DataTypes.TEXT,
-      applicationId: DataTypes.INTEGER
+      applicationId: DataTypes.INTEGER,
+      recruiterId: DataTypes.INTEGER,
+      agreedStatus: DataTypes.INTEGER
     },
     {
       sequelize,

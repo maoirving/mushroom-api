@@ -47,11 +47,17 @@ router.get('/', async function (req, res, next) {
 
 // 用户列表选项
 router.get('/options', async function (req, res, next) {
+  let where = {}
+  const type = req.query.type
+  if (type) {
+    where.type = type
+  }
   var options = await models.User.findAll({
     attributes: [
       ['id', 'value'],
       ['realName', 'label']
     ],
+    where: where,
     order: [['createdAt', 'DESC']]
   })
   res.json({
@@ -84,22 +90,31 @@ router.get('/:id', async function (req, res, next) {
 
 // 根据账号密码（登录）
 router.post('/check', async function (req, res, next) {
+  const userId = req.body.userId
   const username = req.body.username
   const password = req.body.password
+  let where = {}
+  if (userId) {
+    where.id = userId
+  }
+  if (username) {
+    where.username = username
+  }
   // 用户名存在性校验
   const result = await models.User.findOne({
-    where: { username: username }
+    where: where
   })
   if (!password) {
     res.json({ user: result, success: result !== null })
   } else {
     const solt = result.solt
     const md5Pass = await tool.getMD5(password, solt)
+    where.password = md5Pass
     const user = await models.User.findOne({
-      where: { username: req.body.username, password: md5Pass }
+      where: where
     })
     // 生成token
-    if (user) {
+    if (username && user) {
       var token = jwt.sign({ uid: user.id, rid: user.type }, jwt_config.secretKey, {
         expiresIn: jwt_config.expiresIn
       })
