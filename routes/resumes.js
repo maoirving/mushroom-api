@@ -3,8 +3,83 @@ var router = express.Router()
 var models = require('../models')
 var Op = models.Sequelize.Op
 
+/* ------- 在线简历 ---------- */
 // 简历列表
 router.get('/', async function (req, res, next) {
+  var currentPage = parseInt(req.query.currentPage)
+  var pageSize = parseInt(req.query.limit)
+  var where = {}
+  var userId = req.query.userId
+  if (userId) {
+    where.userId = userId
+  }
+
+  let extraFind = {}
+  if (currentPage && pageSize) {
+    extraFind = {
+      offset: (currentPage - 1) * pageSize,
+      limit: pageSize,
+      distinct: true
+    }
+  }
+  var result = await models.Resume.findAndCountAll({
+    order: [['createdAt', 'DESC']],
+    where: where,
+    include: [
+      {
+        model: models.User,
+        attributes: {
+          exclude: ['id', 'solt', 'password', 'createdAt', 'updatedAt']
+        }
+      }
+    ],
+    ...extraFind
+  })
+  res.json({
+    resumes: result.rows,
+    total: result.count
+  })
+})
+
+// 新增
+router.post('/', async function (req, res, next) {
+  var resume = await models.Resume.create(req.body)
+  res.json({ resume: resume, success: resume !== null })
+})
+
+// 查询
+router.get('/:id', async function (req, res, next) {
+  const resume = await models.Resume.findOne({
+    where: { id: req.params.id },
+    include: [
+      {
+        model: models.User,
+        attributes: {
+          exclude: ['id', 'solt', 'password']
+        }
+      }
+    ]
+  })
+  res.json({ resume: resume })
+})
+
+// 修改
+router.put('/:id', async function (req, res, next) {
+  var resume = await models.Resume.findByPk(req.params.id)
+  resume.update(req.body)
+  res.json({ resume: resume, success: true })
+})
+
+// 删除
+router.delete('/:id', async function (req, res, next) {
+  var resume = await models.Resume.findByPk(req.params.id)
+  resume.destroy(req.body)
+  res.json({ msg: '删除成功！', success: true })
+})
+
+/* ------- 附件简历 ---------- */
+// 附件简历列表
+router.get('/files', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage)
   var pageSize = parseInt(req.query.limit)
   var where = {}
@@ -32,8 +107,8 @@ router.get('/', async function (req, res, next) {
   })
 })
 
-// 简历选项列表
-router.get('/options', async function (req, res, next) {
+// 附件简历选项列表
+router.get('/files/options', async function (req, res, next) {
   var where = {}
   var userId = req.query.userId
   if (userId) {
@@ -47,35 +122,6 @@ router.get('/options', async function (req, res, next) {
   res.json({
     options: options
   })
-})
-
-// 新增
-router.post('/', async function (req, res, next) {
-  var interview = await models.Interview.create(req.body)
-  res.json({ interviews: interview, success: interview !== null })
-})
-
-// 查询
-router.get('/:id', async function (req, res, next) {
-  const interview = await models.Interview.findOne({
-    where: { id: req.params.id },
-    include: [models.Company]
-  })
-  res.json({ interview: interview })
-})
-
-// 修改
-router.put('/:id', async function (req, res, next) {
-  var interview = await models.Interview.findByPk(req.params.id)
-  interview.update(req.body)
-  res.json({ interview: interview, success: true })
-})
-
-// 删除
-router.delete('/:id', async function (req, res, next) {
-  var interview = await models.Interview.findByPk(req.params.id)
-  interview.destroy(req.body)
-  res.json({ msg: '删除成功！', success: true })
 })
 
 module.exports = router
