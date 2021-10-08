@@ -79,7 +79,7 @@ router.delete('/:id', async function (req, res, next) {
 
 /* ------- 附件简历 ---------- */
 // 附件简历列表
-router.get('/files', async function (req, res, next) {
+router.get('/files/list', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage)
   var pageSize = parseInt(req.query.limit)
   var where = {}
@@ -122,6 +122,13 @@ router.get('/files/options', async function (req, res, next) {
   res.json({
     options: options
   })
+})
+
+// 删除
+router.delete('/files/:id', async function (req, res, next) {
+  var resumeFile = await models.ResumeFile.findByPk(req.params.id)
+  resumeFile.destroy(req.body)
+  res.json({ msg: '删除成功！', success: true })
 })
 
 module.exports = router
