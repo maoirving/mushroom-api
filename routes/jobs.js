@@ -9,11 +9,15 @@ router.get('/', async function (req, res, next) {
   var pageSize = parseInt(req.query.limit) || 10
   var where = {}
   // 模糊查询
+  var active = req.query.active
   var name = req.query.name
   var type = req.query.type
   var educationBackground = req.query.educationBackground
   var workExperience = req.query.workExperience
 
+  if (active) {
+    where.status = 1
+  }
   if (name) {
     where.name = {
       [Op.like]: '%' + name + '%'
