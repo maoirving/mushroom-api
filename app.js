@@ -3,6 +3,8 @@ var express = require('express')
 var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
+var vertoken = require('./public/javascripts/token.js')
+var expressJwt = require('express-jwt')
 
 var indexRouter = require('./routes/index')
 var usersRouter = require('./routes/users')
@@ -38,6 +40,51 @@ app.all('*', function (req, res, next) {
   res.header('X-Powered-By', ' 3.2.1')
   res.header('Content-Type', 'application/json;charset=utf-8')
   next()
+})
+
+//解析token获取用户信息
+app.use(function (req, res, next) {
+  var token = req.headers['authorization']
+  if (token == undefined) {
+    next()
+  } else {
+    vertoken
+      .getToken(token)
+      .then(userInfo => {
+        req.data = userInfo
+        next()
+      })
+      .catch(error => {
+        next()
+      })
+  }
+})
+
+//验证token是否过期并规定那些路由不需要验证
+app.use(
+  expressJwt({
+    secret: 'mushroom',
+    // 算法
+    algorithms: ['HS256']
+  }).unless({
+    path: [
+      '/users/check',
+      '/users',
+      /^\/uploads\/*/,
+      /^\/upload\/*/,
+      '/',
+      /^\/jobs\/*/,
+      /^\/companies\/*/
+    ] //不需要验证的接口名称
+  })
+)
+
+//token失效返回信息
+app.use(function (err, req, res, next) {
+  if (err.status == 401) {
+    return res.status(401).send('token失效')
+    //可以设置返回json 形式  res.json({message:'token失效'})
+  }
 })
 
 app.use('/', indexRouter)

@@ -28,7 +28,7 @@ router.get('/', async function (req, res, next) {
   }
   var userWhere = {}
   var intervieweeName = req.query.intervieweeName
-  const userId = req.query.userId
+  const userId = req.data.userId
   if (intervieweeName) {
     userWhere.realName = {
       [Op.like]: '%' + intervieweeName + '%'

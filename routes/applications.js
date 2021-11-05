@@ -10,7 +10,7 @@ router.get('/', async function (req, res, next) {
   var where = {}
   var isRead = req.query.isRead
   var handledStatus = req.query.handledStatus
-  const userId = req.query.userId
+  const userId = req.data.userId
   const jobId = req.query.jobId
   if (userId) {
     where.userId = userId
@@ -109,6 +109,7 @@ router.get('/ids', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
+  req.body.userId = req.data.userId
   var application = await models.Application.create(req.body)
   res.json({ applications: application, success: application !== null })
 })

@@ -3,6 +3,7 @@ var router = express.Router()
 var models = require('../models')
 var Op = models.Sequelize.Op
 var tool = require('../public/javascripts/tools.js')
+var vertoken = require('../public/javascripts/token.js')
 var jwt = require('jsonwebtoken')
 var jwt_config = require(__dirname + '/../config/config.json').jwt_config
 
@@ -78,9 +79,9 @@ router.post('/', async function (req, res, next) {
 
 // 查询
 // 根据id
-router.get('/:id', async function (req, res, next) {
+router.get('/info', async function (req, res, next) {
   const user = await models.User.findOne({
-    where: { id: req.params.id },
+    where: { id: req.data.userId },
     attributes: {
       exclude: ['solt', 'password']
     }
@@ -90,8 +91,9 @@ router.get('/:id', async function (req, res, next) {
 
 // 根据账号密码（登录）
 router.post('/check', async function (req, res, next) {
-  const userId = req.body.userId
+  const userId = req.data?.userId
   const username = req.body.username
+  const type = req.body.type
   const password = req.body.password
   let where = {}
   if (userId) {
@@ -100,13 +102,20 @@ router.post('/check', async function (req, res, next) {
   if (username) {
     where.username = username
   }
+  if (type) {
+    where.type = type
+  }
   // 用户名存在性校验
   const result = await models.User.findOne({
     where: where
   })
+
   if (!password) {
     res.json({ user: result, success: result !== null })
   } else {
+    if (!result) {
+      return res.json({ success: false })
+    }
     const solt = result.solt
     const md5Pass = await tool.getMD5(password, solt)
     where.password = md5Pass
@@ -115,9 +124,7 @@ router.post('/check', async function (req, res, next) {
     })
     // 生成token
     if (username && user) {
-      var token = jwt.sign({ uid: user.id, rid: user.type }, jwt_config.secretKey, {
-        expiresIn: jwt_config.expiresIn
-      })
+      const token = await vertoken.setToken(username, user.id)
       user.dataValues.token = 'Bearer ' + token
     }
     res.json({ user: user, success: user !== null })
@@ -125,8 +132,8 @@ router.post('/check', async function (req, res, next) {
 })
 
 // 修改
-router.put('/:id', async function (req, res, next) {
-  const user = await models.User.findByPk(req.params.id)
+router.put('/changePassword', async function (req, res, next) {
+  const user = await models.User.findByPk(req.data.userId)
   const password = req.body.password
   if (password) {
     const solt = await tool.getRandomSolt()

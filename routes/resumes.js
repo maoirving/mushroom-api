@@ -9,9 +9,8 @@ router.get('/', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage)
   var pageSize = parseInt(req.query.limit)
   var where = {}
-  var userId = req.query.userId
-  if (userId) {
-    where.userId = userId
+  if (req.data.userId) {
+    where.userId = req.data.userId
   }
 
   let extraFind = {}
@@ -37,6 +36,7 @@ router.get('/', async function (req, res, next) {
   })
   res.json({
     resumes: result.rows,
+    hello: req.decoded,
     total: result.count
   })
 })
@@ -83,9 +83,8 @@ router.get('/files/list', async function (req, res, next) {
   var currentPage = parseInt(req.query.currentPage)
   var pageSize = parseInt(req.query.limit)
   var where = {}
-  var userId = req.query.userId
-  if (userId) {
-    where.userId = userId
+  if (req.data.userId) {
+    where.userId = req.data.userId
   }
 
   let extraFind = {}
@@ -110,9 +109,8 @@ router.get('/files/list', async function (req, res, next) {
 // 附件简历选项列表
 router.get('/files/options', async function (req, res, next) {
   var where = {}
-  var userId = req.query.userId
-  if (userId) {
-    where.userId = userId
+  if (req.data.userId) {
+    where.userId = req.data.userId
   }
   var options = await models.ResumeFile.findAll({
     attributes: [['id', 'value'], ['name', 'label'], 'userId'],
@@ -122,6 +120,13 @@ router.get('/files/options', async function (req, res, next) {
   res.json({
     options: options
   })
+})
+
+// 新增
+router.post('/files', async function (req, res, next) {
+  req.body.userId = req.data.userId
+  var resumeFile = await models.ResumeFile.create(req.body)
+  res.json({ resumeFile: resumeFile, success: resumeFile !== null })
 })
 
 // 删除
