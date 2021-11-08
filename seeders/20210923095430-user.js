@@ -9,7 +9,8 @@ module.exports = {
           username: 'admin',
           realName: '林某人',
           type: 'admin',
-          imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          imageUrl:
+            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
           sex: '女',
           birthday: '2000-08-14',
           phoneNumber: '18239389584',
@@ -22,8 +23,9 @@ module.exports = {
         {
           username: 'hong',
           realName: '洪某人',
-          type: 'worker',
-          imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          type: 'recruiter',
+          imageUrl:
+            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
           sex: '女',
           birthday: '2000-08-14',
           phoneNumber: '18239389584',
@@ -37,7 +39,8 @@ module.exports = {
           username: 'maomao',
           realName: '毛某人',
           type: 'worker',
-          imageUrl: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+          imageUrl:
+            'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
           sex: '男',
           birthday: '1999-01-16',
           phoneNumber: '18239389584',
