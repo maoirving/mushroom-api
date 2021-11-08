@@ -23,7 +23,7 @@ module.exports = {
           4. 对组件化开发有深入理解；<br/>
           5. 熟悉Linux，熟悉常用命令，了解Shell，Awk，Sed等使用。</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -44,7 +44,7 @@ module.exports = {
           3、富有激情和创新理念，追求个人职业发展和公司利益的双赢，注重职业升华机遇和优质工作氛围；<br/>
           4、具备较强的人际沟通能力，及逻辑思维能力；为人正直，诚实可靠；</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -67,7 +67,7 @@ module.exports = {
           -良好的逻辑思维和分析能力，热衷于解决问题、追求极致<br/>
           -强烈的责任心、进取心、团队合作精神和 Ownership</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -90,7 +90,7 @@ module.exports = {
           -热爱设计，审美水平优秀；善于捕捉流行趋势，关注最新的技术和设计动态<br/>
           -具备良好合作态度及团队精神，并富有工作激情、创新欲望和责任感</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -112,7 +112,7 @@ module.exports = {
           4.熟悉Mysql/MongoDB/Redis 等数据库产品的使用和底层原理<br/>
           5.技术视野开阔，学习主动性强，具有优秀的业务沟通能力，良好的工作协调能力</p>`,
           companyId: 1,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -136,7 +136,7 @@ module.exports = {
           5. 对App，服务端，接口测试，性能测试，测试工具/平台，CI，CD 有某项专精；<br/>
           6. 能够分析出当前业务线的痛点问题，具备通过技术工具或推动流程改进解决实际问题的经验；</p>`,
           companyId: 2,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -159,7 +159,7 @@ module.exports = {
           4. 对组件化开发有深入理解；<br/>
           5. 熟悉Linux，熟悉常用命令，了解Shell，Awk，Sed等使用。</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -180,7 +180,7 @@ module.exports = {
           3、富有激情和创新理念，追求个人职业发展和公司利益的双赢，注重职业升华机遇和优质工作氛围；<br/>
           4、具备较强的人际沟通能力，及逻辑思维能力；为人正直，诚实可靠；</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -203,7 +203,7 @@ module.exports = {
           -良好的逻辑思维和分析能力，热衷于解决问题、追求极致<br/>
           -强烈的责任心、进取心、团队合作精神和 Ownership</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -226,7 +226,7 @@ module.exports = {
           -热爱设计，审美水平优秀；善于捕捉流行趋势，关注最新的技术和设计动态<br/>
           -具备良好合作态度及团队精神，并富有工作激情、创新欲望和责任感</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -248,7 +248,7 @@ module.exports = {
           4.熟悉Mysql/MongoDB/Redis 等数据库产品的使用和底层原理<br/>
           5.技术视野开阔，学习主动性强，具有优秀的业务沟通能力，良好的工作协调能力</p>`,
           companyId: 1,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -272,7 +272,7 @@ module.exports = {
           5. 对App，服务端，接口测试，性能测试，测试工具/平台，CI，CD 有某项专精；<br/>
           6. 能够分析出当前业务线的痛点问题，具备通过技术工具或推动流程改进解决实际问题的经验；</p>`,
           companyId: 2,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -294,7 +294,7 @@ module.exports = {
           4. 对组件化开发有深入理解；<br/>
           5. 熟悉Linux，熟悉常用命令，了解Shell，Awk，Sed等使用。</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -315,7 +315,7 @@ module.exports = {
           3、富有激情和创新理念，追求个人职业发展和公司利益的双赢，注重职业升华机遇和优质工作氛围；<br/>
           4、具备较强的人际沟通能力，及逻辑思维能力；为人正直，诚实可靠；</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -338,7 +338,7 @@ module.exports = {
           -良好的逻辑思维和分析能力，热衷于解决问题、追求极致<br/>
           -强烈的责任心、进取心、团队合作精神和 Ownership</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -361,7 +361,7 @@ module.exports = {
           -热爱设计，审美水平优秀；善于捕捉流行趋势，关注最新的技术和设计动态<br/>
           -具备良好合作态度及团队精神，并富有工作激情、创新欲望和责任感</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -383,7 +383,7 @@ module.exports = {
           4.熟悉Mysql/MongoDB/Redis 等数据库产品的使用和底层原理<br/>
           5.技术视野开阔，学习主动性强，具有优秀的业务沟通能力，良好的工作协调能力</p>`,
           companyId: 1,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -407,7 +407,7 @@ module.exports = {
           5. 对App，服务端，接口测试，性能测试，测试工具/平台，CI，CD 有某项专精；<br/>
           6. 能够分析出当前业务线的痛点问题，具备通过技术工具或推动流程改进解决实际问题的经验；</p>`,
           companyId: 2,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -429,7 +429,7 @@ module.exports = {
           4. 对组件化开发有深入理解；<br/>
           5. 熟悉Linux，熟悉常用命令，了解Shell，Awk，Sed等使用。</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -450,7 +450,7 @@ module.exports = {
           3、富有激情和创新理念，追求个人职业发展和公司利益的双赢，注重职业升华机遇和优质工作氛围；<br/>
           4、具备较强的人际沟通能力，及逻辑思维能力；为人正直，诚实可靠；</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -473,7 +473,7 @@ module.exports = {
           -良好的逻辑思维和分析能力，热衷于解决问题、追求极致<br/>
           -强烈的责任心、进取心、团队合作精神和 Ownership</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -496,7 +496,7 @@ module.exports = {
           -热爱设计，审美水平优秀；善于捕捉流行趋势，关注最新的技术和设计动态<br/>
           -具备良好合作态度及团队精神，并富有工作激情、创新欲望和责任感</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -518,7 +518,7 @@ module.exports = {
           4.熟悉Mysql/MongoDB/Redis 等数据库产品的使用和底层原理<br/>
           5.技术视野开阔，学习主动性强，具有优秀的业务沟通能力，良好的工作协调能力</p>`,
           companyId: 1,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -542,7 +542,7 @@ module.exports = {
           5. 对App，服务端，接口测试，性能测试，测试工具/平台，CI，CD 有某项专精；<br/>
           6. 能够分析出当前业务线的痛点问题，具备通过技术工具或推动流程改进解决实际问题的经验；</p>`,
           companyId: 2,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -564,7 +564,7 @@ module.exports = {
           4. 对组件化开发有深入理解；<br/>
           5. 熟悉Linux，熟悉常用命令，了解Shell，Awk，Sed等使用。</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -585,7 +585,7 @@ module.exports = {
           3、富有激情和创新理念，追求个人职业发展和公司利益的双赢，注重职业升华机遇和优质工作氛围；<br/>
           4、具备较强的人际沟通能力，及逻辑思维能力；为人正直，诚实可靠；</p>`,
           companyId: 4,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -608,7 +608,7 @@ module.exports = {
           -良好的逻辑思维和分析能力，热衷于解决问题、追求极致<br/>
           -强烈的责任心、进取心、团队合作精神和 Ownership</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -631,7 +631,7 @@ module.exports = {
           -热爱设计，审美水平优秀；善于捕捉流行趋势，关注最新的技术和设计动态<br/>
           -具备良好合作态度及团队精神，并富有工作激情、创新欲望和责任感</p>`,
           companyId: 3,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -653,7 +653,7 @@ module.exports = {
           4.熟悉Mysql/MongoDB/Redis 等数据库产品的使用和底层原理<br/>
           5.技术视野开阔，学习主动性强，具有优秀的业务沟通能力，良好的工作协调能力</p>`,
           companyId: 1,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         },
@@ -677,7 +677,7 @@ module.exports = {
           5. 对App，服务端，接口测试，性能测试，测试工具/平台，CI，CD 有某项专精；<br/>
           6. 能够分析出当前业务线的痛点问题，具备通过技术工具或推动流程改进解决实际问题的经验；</p>`,
           companyId: 2,
-          status: 0,
+          status: 1,
           createdAt: new Date(),
           updatedAt: new Date()
         }

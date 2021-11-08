@@ -132,7 +132,7 @@ router.post('/check', async function (req, res, next) {
 })
 
 // 修改
-router.put('/changePassword', async function (req, res, next) {
+router.put('/info', async function (req, res, next) {
   const user = await models.User.findByPk(req.data.userId)
   const password = req.body.password
   if (password) {
