@@ -91,14 +91,10 @@ router.get('/info', async function (req, res, next) {
 
 // 根据账号密码（登录）
 router.post('/check', async function (req, res, next) {
-  const userId = req.data?.userId
   const username = req.body.username
   const type = req.body.type
   const password = req.body.password
   let where = {}
-  if (userId) {
-    where.id = userId
-  }
   if (username) {
     where.username = username
   }
