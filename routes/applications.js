@@ -28,6 +28,7 @@ router.get('/', async function (req, res, next) {
   }
   const jobName = req.query.jobName
   const jobType = req.query.jobType
+  const companyId = req.query.companyId
   let jobWhere = {}
   if (jobName) {
     jobWhere.name = {
@@ -36,6 +37,9 @@ router.get('/', async function (req, res, next) {
   }
   if (jobType) {
     jobWhere.type = jobType
+  }
+  if (companyId) {
+    jobWhere.companyId = companyId
   }
   let userWhere = {}
   const userRealName = req.query.userRealName

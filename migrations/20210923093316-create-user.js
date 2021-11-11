@@ -40,6 +40,10 @@ module.exports = {
         type: Sequelize.STRING(20),
         comment: '邮箱'
       },
+      companyId: {
+        type: Sequelize.INTEGER,
+        comment: '公司代码'
+      },
       password: {
         type: Sequelize.STRING(50),
         comment: '密码'

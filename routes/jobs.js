@@ -10,6 +10,7 @@ router.get('/', async function (req, res, next) {
   var where = {}
   // 模糊查询
   var active = req.query.active
+  var companyId = req.query.companyId
   var name = req.query.name
   var type = req.query.type
   var educationBackground = req.query.educationBackground
@@ -17,6 +18,9 @@ router.get('/', async function (req, res, next) {
 
   if (active) {
     where.status = 1
+  }
+  if (companyId) {
+    where.companyId = companyId
   }
   if (name) {
     where.name = {

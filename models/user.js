@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       models.User.hasMany(models.Application, { foreignKey: 'userId' })
       models.User.hasMany(models.ResumeFile, { foreignKey: 'userId' })
       models.User.hasOne(models.Resume, { foreignKey: 'userId' })
+      models.User.belongsTo(models.Company, { foreignKey: 'companyId' })
       models.User.hasMany(models.Interview, {
         foreignKey: 'recruiterId',
         targetKey: 'id',
@@ -34,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
       birthday: DataTypes.STRING,
       phoneNumber: DataTypes.STRING,
       email: DataTypes.STRING,
+      companyId: DataTypes.INTEGER,
       password: DataTypes.STRING,
       solt: DataTypes.STRING
     },

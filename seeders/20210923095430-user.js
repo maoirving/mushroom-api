@@ -30,6 +30,7 @@ module.exports = {
           birthday: '2000-08-14',
           phoneNumber: '18239389584',
           email: 'wew@qq.com',
+          companyId: 2,
           password: '929b71104a53a192bd1d5da17f39eb64',
           solt: 'UkR4Zs',
           createdAt: new Date(),

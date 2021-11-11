@@ -84,7 +84,8 @@ router.get('/info', async function (req, res, next) {
     where: { id: req.data.userId },
     attributes: {
       exclude: ['solt', 'password']
-    }
+    },
+    include: [models.Company]
   })
   res.json({ user: user })
 })
