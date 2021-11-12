@@ -14,9 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       models.Application.belongsTo(models.ResumeFile, {
         foreignKey: 'resumeId'
       })
-      models.Application.hasMany(models.Message, {
-        foreignKey: 'applicationId'
-      })
       models.Application.hasOne(models.Interview, {
         foreignKey: 'applicationId'
       })

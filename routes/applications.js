@@ -11,8 +11,9 @@ router.get('/', async function (req, res, next) {
   var isRead = req.query.isRead
   var handledStatus = req.query.handledStatus
   const userId = req.data.userId
+  const role = req.data.role
   const jobId = req.query.jobId
-  if (userId) {
+  if (userId && role === 'worker') {
     where.userId = userId
   }
   if (jobId) {
@@ -78,9 +79,6 @@ router.get('/', async function (req, res, next) {
       },
       {
         model: models.ResumeFile
-      },
-      {
-        model: models.Message
       }
     ],
     offset: (currentPage - 1) * pageSize,

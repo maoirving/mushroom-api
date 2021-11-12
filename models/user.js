@@ -18,11 +18,6 @@ module.exports = (sequelize, DataTypes) => {
         targetKey: 'id',
         as: 'Recruiter'
       })
-      models.User.hasMany(models.Message, {
-        foreignKey: 'receiverId',
-        targetKey: 'id',
-        as: 'Receiver'
-      })
     }
   }
   User.init(

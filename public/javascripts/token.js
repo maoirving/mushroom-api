@@ -2,11 +2,11 @@ var jwt = require('jsonwebtoken')
 var jwtScrect = 'mushroom' //签名
 
 //登录接口 生成token的方法
-var setToken = function (username, userId) {
+var setToken = function (username, userId, role) {
   return new Promise((resolve, reject) => {
     //expiresln 设置token过期的时间
     //{ user_name: user_name, user_id: user_id } 传入需要解析的值（ 一般为用户名，用户id 等）
-    const token = jwt.sign({ username: username, userId: userId }, jwtScrect, {
+    const token = jwt.sign({ username: username, userId: userId, role: role }, jwtScrect, {
       expiresIn: '24h'
     })
     // const token = jwt.sign({ user_name: user_name, user_id: user_id }, jwtScrect, { expiresIn: '10s' });

@@ -33,13 +33,15 @@ router.get('/', async function (req, res, next) {
   var userWhere = {}
   var intervieweeName = req.query.intervieweeName
   const userId = req.data.userId
+  const role = req.data.role
   if (intervieweeName) {
     userWhere.realName = {
       [Op.like]: '%' + intervieweeName + '%'
     }
   }
-  if (userId) {
-    userWhere.id = userId
+  let applicationWhere = {}
+  if (userId && role === 'worker') {
+    applicationWhere.userId = userId
   }
 
   var result = await models.Interview.findAndCountAll({
@@ -48,11 +50,12 @@ router.get('/', async function (req, res, next) {
     include: [
       {
         model: models.Application,
+        where: applicationWhere,
         include: [
           {
             model: models.Job,
             where: jobWhere,
-            required: false,
+            // required: false,
             include: [
               {
                 model: models.Company,
@@ -66,9 +69,6 @@ router.get('/', async function (req, res, next) {
             attributes: {
               exclude: ['solt', 'password']
             }
-          },
-          {
-            model: models.Message
           }
         ]
       },
@@ -96,6 +96,8 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
+  const recruiterId = req.data.userId
+  req.body.recruiterId = recruiterId
   var interview = await models.Interview.create(req.body)
   res.json({ interviews: interview, success: interview !== null })
 })

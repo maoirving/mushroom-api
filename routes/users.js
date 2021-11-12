@@ -121,7 +121,7 @@ router.post('/check', async function (req, res, next) {
     })
     // 生成token
     if (username && user) {
-      const token = await vertoken.setToken(username, user.id)
+      const token = await vertoken.setToken(username, user.id, user.type)
       user.dataValues.token = 'Bearer ' + token
     }
     res.json({ user: user, success: user !== null })
