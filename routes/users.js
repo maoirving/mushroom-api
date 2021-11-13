@@ -121,7 +121,7 @@ router.post('/check', async function (req, res, next) {
     })
     // 生成token
     if (username && user) {
-      const token = await vertoken.setToken(username, user.id, user.type)
+      const token = await vertoken.setToken(user.id, user.type, user.companyId)
       user.dataValues.token = 'Bearer ' + token
     }
     res.json({ user: user, success: user !== null })
@@ -130,7 +130,10 @@ router.post('/check', async function (req, res, next) {
 
 // 修改
 router.put('/info', async function (req, res, next) {
-  const user = await models.User.findByPk(req.data.userId)
+  const userId = req.query.userId ?? req.data.userId
+  console.log('---------------------')
+  console.log(req.query.userId)
+  const user = await models.User.findByPk(userId)
   const password = req.body.password
   if (password) {
     const solt = await tool.getRandomSolt()

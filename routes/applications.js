@@ -97,7 +97,24 @@ router.get('/', async function (req, res, next) {
 
 // 申请列表id选项
 router.get('/ids', async function (req, res, next) {
+  const companyId = req.data.companyId
+  const role = req.data.role
+  const jobWhere = {}
+  if (companyId && role === 'recruiter') {
+    jobWhere.companyId = companyId
+  }
+  console.log('-----------')
+  console.log(jobWhere)
   var options = await models.Application.findAll({
+    where: {
+      handledStatus: 1
+    },
+    include: [
+      {
+        model: models.Job,
+        where: jobWhere
+      }
+    ],
     attributes: [
       ['id', 'value'],
       ['id', 'label']
