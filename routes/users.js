@@ -131,8 +131,6 @@ router.post('/check', async function (req, res, next) {
 // 修改
 router.put('/info', async function (req, res, next) {
   const userId = req.query.userId ?? req.data.userId
-  console.log('---------------------')
-  console.log(req.query.userId)
   const user = await models.User.findByPk(userId)
   const password = req.body.password
   if (password) {

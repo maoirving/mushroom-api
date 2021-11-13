@@ -43,6 +43,7 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
+  req.body.userId = req.data.userId
   var resume = await models.Resume.create(req.body)
   res.json({ resume: resume, success: resume !== null })
 })
