@@ -109,7 +109,7 @@ router.get('/files/list', async function (req, res, next) {
 // 附件简历选项列表
 router.get('/files/options', async function (req, res, next) {
   var where = {}
-  if (req.data.userId) {
+  if (req.data.userId && req.data.role === 'worker') {
     where.userId = req.data.userId
   }
   var options = await models.ResumeFile.findAll({

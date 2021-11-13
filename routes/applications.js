@@ -29,7 +29,7 @@ router.get('/', async function (req, res, next) {
   }
   const jobName = req.query.jobName
   const jobType = req.query.jobType
-  const companyId = req.query.companyId
+  const companyId = req.data.companyId
   let jobWhere = {}
   if (jobName) {
     jobWhere.name = {
@@ -103,8 +103,6 @@ router.get('/ids', async function (req, res, next) {
   if (companyId && role === 'recruiter') {
     jobWhere.companyId = companyId
   }
-  console.log('-----------')
-  console.log(jobWhere)
   var options = await models.Application.findAll({
     where: {
       handledStatus: 1
@@ -128,7 +126,7 @@ router.get('/ids', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  req.body.userId = req.data.userId
+  req.body.userId = req.body.userId ?? req.data.userId
   var application = await models.Application.create(req.body)
   res.json({ applications: application, success: application !== null })
 })

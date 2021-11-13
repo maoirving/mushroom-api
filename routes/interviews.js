@@ -21,7 +21,7 @@ router.get('/', async function (req, res, next) {
   }
   var jobWhere = {}
   const jobName = req.query.jobName
-  const companyId = req.query.companyId
+  const companyId = req.data.companyId
   if (jobName) {
     jobWhere.name = {
       [Op.like]: '%' + jobName + '%'
@@ -96,7 +96,7 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  const recruiterId = req.data.userId
+  const recruiterId = req.body.recruiterId ?? req.data.userId
   req.body.recruiterId = recruiterId
   var interview = await models.Interview.create(req.body)
   res.json({ interviews: interview, success: interview !== null })
