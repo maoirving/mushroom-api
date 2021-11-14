@@ -96,7 +96,9 @@ router.get('/', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  const recruiterId = req.body.recruiterId ?? req.data.userId
+  const recruiterId = req.body.recruiterId
+    ? req.body.recruiterId
+    : req.data.userId
   req.body.recruiterId = recruiterId
   var interview = await models.Interview.create(req.body)
   res.json({ interviews: interview, success: interview !== null })

@@ -126,7 +126,7 @@ router.get('/ids', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  req.body.userId = req.body.userId ?? req.data.userId
+  req.body.userId = req.body.userId ? req.body.userId : req.data.userId
   var application = await models.Application.create(req.body)
   res.json({ applications: application, success: application !== null })
 })
