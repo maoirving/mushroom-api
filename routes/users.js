@@ -56,7 +56,8 @@ router.get('/options', async function (req, res, next) {
   var options = await models.User.findAll({
     attributes: [
       ['id', 'value'],
-      ['realName', 'label']
+      ['realName', 'label'],
+      ['companyId', 'companyId']
     ],
     where: where,
     order: [['createdAt', 'DESC']]
