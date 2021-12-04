@@ -18,7 +18,7 @@ router.get('/', async function (req, res, next) {
   var sex = req.query.sex
   if (realName) {
     where.realName = {
-      [Op.like]: '%' + realName + '%'
+      [Op.like]: '%' + realName + '%',
     }
   }
   if (type) {
@@ -31,18 +31,18 @@ router.get('/', async function (req, res, next) {
     order: [['id', 'DESC']],
     where: where,
     attributes: {
-      exclude: ['solt', 'password']
+      exclude: ['solt', 'password'],
     },
     offset: (currentPage - 1) * pageSize,
-    limit: pageSize
+    limit: pageSize,
   })
   res.json({
     users: result.rows,
     pagination: {
       currentPage: currentPage,
       pageSize: pageSize,
-      total: result.count
-    }
+      total: result.count,
+    },
   })
 })
 
@@ -57,13 +57,13 @@ router.get('/options', async function (req, res, next) {
     attributes: [
       ['id', 'value'],
       ['realName', 'label'],
-      ['companyId', 'companyId']
+      ['companyId', 'companyId'],
     ],
     where: where,
-    order: [['createdAt', 'DESC']]
+    order: [['createdAt', 'DESC']],
   })
   res.json({
-    options: options
+    options: options,
   })
 })
 
@@ -84,9 +84,9 @@ router.get('/info', async function (req, res, next) {
   const user = await models.User.findOne({
     where: { id: req.data.userId },
     attributes: {
-      exclude: ['solt', 'password']
+      exclude: ['solt', 'password'],
     },
-    include: [models.Company]
+    include: [models.Company],
   })
   res.json({ user: user })
 })
@@ -94,6 +94,7 @@ router.get('/info', async function (req, res, next) {
 // 根据账号密码（登录）
 router.post('/check', async function (req, res, next) {
   const username = req.body.username
+  const userId = req.data && req.data.userId
   const type = req.body.type
   const password = req.body.password
   let where = {}
@@ -103,9 +104,12 @@ router.post('/check', async function (req, res, next) {
   if (type) {
     where.type = type
   }
+  if (userId) {
+    where.id = userId
+  }
   // 用户名存在性校验
   const result = await models.User.findOne({
-    where: where
+    where: where,
   })
 
   if (!password) {
@@ -118,7 +122,7 @@ router.post('/check', async function (req, res, next) {
     const md5Pass = await tool.getMD5(password, solt)
     where.password = md5Pass
     const user = await models.User.findOne({
-      where: where
+      where: where,
     })
     // 生成token
     if (username && user) {
