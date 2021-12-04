@@ -104,7 +104,7 @@ router.post('/check', async function (req, res, next) {
   if (type) {
     where.type = type
   }
-  if (userId) {
+  if (userId && !username) {
     where.id = userId
   }
   // 用户名存在性校验
