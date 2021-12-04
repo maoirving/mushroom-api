@@ -102,6 +102,9 @@ router.get('/:id', async function (req, res, next) {
       {
         model: models.Company,
         include: [models.Job]
+      },
+      {
+        model: models.Application,
       }
     ]
   })
