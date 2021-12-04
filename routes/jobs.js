@@ -53,6 +53,9 @@ router.get('/', async function (req, res, next) {
       {
         model: models.Company,
         where: companyWhere
+      },
+      {
+        model: models.Application,
       }
     ],
     offset: (currentPage - 1) * pageSize,
