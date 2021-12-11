@@ -22,7 +22,7 @@ router.get('/', async function (req, res, next) {
   var jobWhere = {}
   const jobName = req.query.jobName
   const companyId = req.data.companyId
-  const role = req.data.role
+  const role = req.data && req.data.role
   if (jobName) {
     jobWhere.name = {
       [Op.like]: '%' + jobName + '%'

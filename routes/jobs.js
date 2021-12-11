@@ -11,7 +11,7 @@ router.get('/', async function (req, res, next) {
   // 模糊查询
   var active = req.query.active
   var companyId = req.data && req.data.companyId
-  const role = req.data.role
+  const role = req.data && req.data.role
   var name = req.query.name
   var type = req.query.type
   var educationBackground = req.query.educationBackground
