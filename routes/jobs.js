@@ -11,6 +11,7 @@ router.get('/', async function (req, res, next) {
   // 模糊查询
   var active = req.query.active
   var companyId = req.data && req.data.companyId
+  const role = req.data.role
   var name = req.query.name
   var type = req.query.type
   var educationBackground = req.query.educationBackground
@@ -19,7 +20,7 @@ router.get('/', async function (req, res, next) {
   if (active) {
     where.status = 1
   }
-  if (companyId) {
+  if (role === 'recruiter') {
     where.companyId = companyId
   }
   if (name) {
@@ -87,9 +88,15 @@ router.get('/options', async function (req, res, next) {
 
 // 新增
 router.post('/', async function (req, res, next) {
-  if (!req.body.companyId && req.data.role === 'recruiter') {
-    req.body.companyId = req.data.companyId
+  let companyId = req.body.companyId
+  if (!companyId && req.data.role === 'recruiter') {
+    companyId = req.data.companyId
   }
+  if(!companyId) {
+    res.json({ companyId: companyId, success: false })
+    return
+  }
+  req.body.companyId = companyId
   var job = await models.Job.create(req.body)
   res.json({ jobs: job, success: job !== null })
 })

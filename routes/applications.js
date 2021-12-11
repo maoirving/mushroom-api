@@ -39,7 +39,7 @@ router.get('/', async function (req, res, next) {
   if (jobType) {
     jobWhere.type = jobType
   }
-  if (companyId) {
+  if (role === 'recruiter') {
     jobWhere.companyId = companyId
   }
   let userWhere = {}
@@ -100,7 +100,7 @@ router.get('/ids', async function (req, res, next) {
   const companyId = req.data.companyId
   const role = req.data.role
   const jobWhere = {}
-  if (companyId && role === 'recruiter') {
+  if (role === 'recruiter') {
     jobWhere.companyId = companyId
   }
   var options = await models.Application.findAll({
