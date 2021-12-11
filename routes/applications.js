@@ -13,7 +13,7 @@ router.get('/', async function (req, res, next) {
   const userId = req.data.userId
   const role = req.data && req.data.role
   const jobId = req.query.jobId
-  if (userId && role === 'worker') {
+  if (role === 'worker') {
     where.userId = userId
   }
   if (jobId) {
@@ -50,11 +50,11 @@ router.get('/', async function (req, res, next) {
     }
   }
 
-  let resumeWhere = {}
-  const educationBackground = req.query.educationBackground
-  if (educationBackground) {
-    resumeWhere.educationBackground = educationBackground
-  }
+  // let resumeWhere = {}
+  // const educationBackground = req.query.educationBackground
+  // if (educationBackground) {
+  //   resumeWhere.educationBackground = educationBackground
+  // }
   var result = await models.Application.findAndCountAll({
     order: [['createdAt', 'DESC']],
     where: where,
@@ -70,12 +70,12 @@ router.get('/', async function (req, res, next) {
         attributes: {
           exclude: ['solt', 'password']
         },
-        include: [
-          {
-            model: models.Resume,
-            where: resumeWhere
-          }
-        ]
+        // include: [
+        //   {
+        //     model: models.Resume,
+        //     where: resumeWhere
+        //   }
+        // ]
       },
       {
         model: models.ResumeFile
